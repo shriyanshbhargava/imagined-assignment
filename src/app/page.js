@@ -19,13 +19,13 @@ export default function TodoPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-6">
+    <div className="min-h-screen bg-[#EEF0F3] p-4 md:p-6">
       <div className="max-w-2xl mx-auto space-y-8">
         <Calendar selectedDate={selectedDate} onDateSelect={setSelectedDate} />
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold flex items-center">
+            <h2 className="text-xl font-bold flex items-center font-montserrat">
               <CalendarIcon className="w-5 h-5 mr-2" />
               {format(selectedDate, "yyyy-MM-dd") ===
               format(new Date(), "yyyy-MM-dd")
