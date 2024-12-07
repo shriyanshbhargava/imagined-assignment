@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  DialogClose,
 } from "@/components/ui/dialog";
 
 export default function AddTaskButton({
@@ -47,7 +46,7 @@ export default function AddTaskButton({
               id="title"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 "
               placeholder="Enter task title"
             />
           </div>
@@ -62,7 +61,7 @@ export default function AddTaskButton({
               id="description"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500"
               placeholder="Enter task description"
               rows={3}
             />
@@ -70,17 +69,13 @@ export default function AddTaskButton({
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+              className="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-gray-800 focus:outline-none focus:ring-1focus:ring-gray-500 focus:ring-offset-2"
             >
               Add Task
             </button>
           </div>
         </form>
-        <DialogClose asChild>
-          <button className="absolute top-2 right-2 text-gray-500 hover:text-black">
-            &times;
-          </button>
-        </DialogClose>
+      
       </DialogContent>
     </Dialog>
   );

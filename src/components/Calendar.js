@@ -15,11 +15,10 @@ export function Calendar({ selectedDate, onDateSelect }) {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <button
           onClick={goToPreviousWeek}
-          className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black"
+          className="p-2 rounded-full hover:bg-gray-200 "
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -28,18 +27,17 @@ export function Calendar({ selectedDate, onDateSelect }) {
         </div>
         <button
           onClick={goToNextWeek}
-          className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black"
+          className="p-2 rounded-full hover:bg-gray-200 "
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Date Grid */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-2 ">
         {weekDays.map((date) => {
           const dayNumber = format(date, "d");
-          const isPast = isBefore(date, new Date()); // Determine if it's a past date
-          const isTodayDate = isToday(date); // Determine if it's today
+          const isPast = isBefore(date, new Date());
+          const isTodayDate = isToday(date);
           const isSelected =
             format(date, "yyyy-MM-dd") === format(selectedDate, "yyyy-MM-dd");
 
@@ -47,18 +45,23 @@ export function Calendar({ selectedDate, onDateSelect }) {
             <button
               key={date.toISOString()}
               onClick={() => onDateSelect(date)}
-              className={`
-                aspect-square rounded-md flex flex-col items-center justify-center
-                ${
-                  isSelected
-                    ? "bg-black text-white py-2"
-                    : isPast
-                    ? "text-black py-2"
-                    : "text-gray-500 py-2"
-                }
-              `}
+              className={`aspect-square rounded-md flex flex-col items-center justify-center
+              ${
+                isSelected
+                  ? "bg-black text-white py-2 hover:bg-black"
+                  : isPast
+                  ? "text-black py-2 hover:bg-gray-200"
+                  : "text-gray-500 py-2 hover:bg-gray-200"
+              }
+              focus:outline-none`}
             >
-              <span className="text-xs">{format(date, "EEEE")[0]}</span>
+              <span
+                className={`text-xs font-semibold ${
+                  isSelected ? "text-white" : "text-gray-500"
+                }`}
+              >
+                {format(date, "EEEE")[0]}
+              </span>
               <span className="text-lg font-semibold">{dayNumber}</span>
             </button>
           );
