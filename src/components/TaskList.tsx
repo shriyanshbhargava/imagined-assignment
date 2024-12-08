@@ -2,7 +2,7 @@ import { TodoItem } from "./TodoItem";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Todo {
-  id: string | number; // Adjust based on your `id` type (e.g., `string` or `number`)
+  id: string | number; 
   title: string;
   description: string;
   completed: boolean;

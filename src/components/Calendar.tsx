@@ -86,7 +86,7 @@ export function Calendar({ selectedDate, onDateSelect }: CalendarProps) {
                   className={`aspect-square rounded-md flex flex-col items-center justify-center
                 transition-transform transform duration-300 ${
                   isSelected
-                    ? "bg-black text-white py-2 hover:bg-black scale-105"
+                    ? "bg-black text-white py-2  hover:bg-black scale-105"
                     : isPast
                     ? "text-black py-2 hover:bg-gray-200 scale-100"
                     : "text-gray-500 py-2 hover:bg-gray-200 scale-100"

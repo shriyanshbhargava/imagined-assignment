@@ -8,15 +8,12 @@ import { TaskList } from "@/components/TaskList";
 import { useTodoStore } from "@/store/todo-store";
 import AddTaskButton from "@/components/AddTaskButton";
 
-// Define the types for the props/state
 export default function TodoPage() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isAddingTodo, setIsAddingTodo] = useState<boolean>(false);
 
-  // Zustand store destructuring with type safety
   const { todos, addTodo, toggleTodo, editTodo, deleteTodo } = useTodoStore();
 
-  // Filter today's todos
   const todaysTodos = todos.filter(
     (todo) =>
       todo.date &&

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 
 interface TodoItemProps {
-  id: string | number; // Adjust type based on your ID system
+  id: string | number;
   title: string;
   description: string;
   completed: boolean;
@@ -40,7 +40,7 @@ export function TodoItem({
   };
 
   return (
-    <div className="group flex items-start space-x-3 p-4 bg-gray-50 rounded-lg transition-colors font-playfair shadow hover:cursor-pointer">
+    <div className="group flex items-start space-x-3 p-4 bg-gray-50 rounded-lg transition-colors  shadow hover:cursor-pointer">
       <button
         onClick={onToggle}
         className={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
@@ -52,16 +52,16 @@ export function TodoItem({
         {completed && <Check className="w-3 h-3 text-white" />}
       </button>
 
-      <div className="flex-1">
+      <div className="flex-1 max-w-lg">
         <h3
-          className={`font-extrabold text-lg ${
+          className={`font-bold text-lg truncate ${
             completed ? "line-through text-gray-500" : ""
           }`}
         >
           {title}
         </h3>
         <p
-          className={`text-sm ${
+          className={`text-sm  ${
             completed ? "line-through text-gray-400" : "text-black"
           }`}
         >
@@ -91,8 +91,7 @@ export function TodoItem({
                 placeholder="Title"
                 className="w-full px-2 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-gray-500"
               />
-              <Input
-                type="text"
+              <textarea
                 value={editedDescription}
                 onChange={(e) => setEditedDescription(e.target.value)}
                 placeholder="Description"

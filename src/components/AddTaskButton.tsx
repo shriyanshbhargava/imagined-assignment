@@ -1,7 +1,6 @@
 import React, { useState, FormEvent } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@components/ui/dialog";
 
-// Define the props type
 interface AddTaskButtonProps {
   isOpen: boolean;
   onClose: () => void;
