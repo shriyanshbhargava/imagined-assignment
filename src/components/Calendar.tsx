@@ -1,40 +1,45 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import { format, addDays, startOfWeek, isBefore, isToday } from "date-fns"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { motion, AnimatePresence } from "framer-motion"
+import React, { useState } from "react";
+import { format, addDays, startOfWeek, isBefore, isToday } from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export function Calendar({ selectedDate, onDateSelect }) {
-  const [direction, setDirection] = useState(0)
+interface CalendarProps {
+  selectedDate: Date;
+  onDateSelect: (date: Date) => void;
+}
 
-  const startDate = startOfWeek(selectedDate)
-  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(startDate, i))
+export function Calendar({ selectedDate, onDateSelect }: CalendarProps) {
+  const [direction, setDirection] = useState<number>(0);
+
+  const startDate = startOfWeek(selectedDate);
+  const weekDays = Array.from({ length: 7 }, (_, i) => addDays(startDate, i));
 
   const goToPreviousWeek = () => {
-    setDirection(-1)
-    onDateSelect(addDays(selectedDate, -7))
-  }
+    setDirection(-1);
+    onDateSelect(addDays(selectedDate, -7));
+  };
 
   const goToNextWeek = () => {
-    setDirection(1)
-    onDateSelect(addDays(selectedDate, 7))
-  }
+    setDirection(1);
+    onDateSelect(addDays(selectedDate, 7));
+  };
 
   const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? '100%' : '-100%',
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 1,
     }),
     center: {
       x: 0,
       opacity: 1,
     },
-    exit: (direction) => ({
-      x: direction < 0 ? '100%' : '-100%',
+    exit: (direction: number) => ({
+      x: direction < 0 ? "100%" : "-100%",
       opacity: 1,
     }),
-  }
+  };
 
   return (
     <div className="w-full max-w-md mx-auto overflow-hidden">
@@ -68,11 +73,11 @@ export function Calendar({ selectedDate, onDateSelect }) {
           className="grid grid-cols-7 gap-2"
         >
           {weekDays.map((date) => {
-            const dayNumber = format(date, "d")
-            const isPast = isBefore(date, new Date())
-            const isTodayDate = isToday(date)
+            const dayNumber = format(date, "d");
+            const isPast = isBefore(date, new Date());
+            const isTodayDate = isToday(date);
             const isSelected =
-              format(date, "yyyy-MM-dd") === format(selectedDate, "yyyy-MM-dd")
+              format(date, "yyyy-MM-dd") === format(selectedDate, "yyyy-MM-dd");
 
             return (
               <button
@@ -96,11 +101,10 @@ export function Calendar({ selectedDate, onDateSelect }) {
                 </span>
                 <span className="text-lg font-semibold">{dayNumber}</span>
               </button>
-            )
+            );
           })}
         </motion.div>
       </AnimatePresence>
     </div>
-  )
+  );
 }
-

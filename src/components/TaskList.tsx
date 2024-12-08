@@ -1,8 +1,22 @@
 import { TodoItem } from "./TodoItem";
 import { motion, AnimatePresence } from "framer-motion";
 
-export function TaskList({ todos, onToggle, onEdit, onDelete }) {
-  const sortedTodos = [...todos].sort((a, b) => a.completed - b.completed);
+interface Todo {
+  id: string | number; // Adjust based on your `id` type (e.g., `string` or `number`)
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+interface TaskListProps {
+  todos: Todo[];
+  onToggle: (id: string | number) => void;
+  onEdit: (id: string | number, updatedFields: { title: string; description: string }) => void;
+  onDelete: (id: string | number) => void;
+}
+
+export function TaskList({ todos, onToggle, onEdit, onDelete }: TaskListProps) {
+  const sortedTodos = [...todos].sort((a, b) => Number(a.completed) - Number(b.completed));
 
   return (
     <div className="space-y-2">

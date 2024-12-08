@@ -8,12 +8,15 @@ import { TaskList } from "@/components/TaskList";
 import { useTodoStore } from "@/store/todo-store";
 import AddTaskButton from "@/components/AddTaskButton";
 
+// Define the types for the props/state
 export default function TodoPage() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [isAddingTodo, setIsAddingTodo] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [isAddingTodo, setIsAddingTodo] = useState<boolean>(false);
 
+  // Zustand store destructuring with type safety
   const { todos, addTodo, toggleTodo, editTodo, deleteTodo } = useTodoStore();
 
+  // Filter today's todos
   const todaysTodos = todos.filter(
     (todo) => todo.date === format(selectedDate, "yyyy-MM-dd")
   );
@@ -21,6 +24,7 @@ export default function TodoPage() {
   return (
     <div className="min-h-screen bg-[#EEF0F3] p-4 md:pt-6 relative">
       <div className="max-w-2xl mx-auto space-y-8">
+        {/* Calendar for selecting dates */}
         <Calendar selectedDate={selectedDate} onDateSelect={setSelectedDate} />
 
         <div className="space-y-4">
@@ -34,6 +38,7 @@ export default function TodoPage() {
             </h2>
           </div>
 
+          {/* Add Task Modal */}
           <AddTaskButton
             isOpen={isAddingTodo}
             onClose={() => setIsAddingTodo(false)}
@@ -41,6 +46,7 @@ export default function TodoPage() {
             selectedDate={format(selectedDate, "yyyy-MM-dd")}
           />
 
+          {/* Task List showing today's todos */}
           <TaskList
             todos={todaysTodos}
             onToggle={toggleTodo}
@@ -49,7 +55,9 @@ export default function TodoPage() {
           />
         </div>
       </div>
-      <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 ">
+      
+      {/* Bottom Button for Adding Todos */}
+      <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
         <button
           onClick={() => setIsAddingTodo(true)}
           className="p-4 bg-white text-black rounded-full outline-none ring-1 ring-gray-200 hover:shadow-lg"

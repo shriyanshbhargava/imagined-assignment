@@ -1,16 +1,29 @@
-import React, { useState } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import React, { useState, FormEvent } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@components/ui/dialog";
+
+// Define the props type
+interface AddTaskButtonProps {
+  isOpen: boolean;
+  onClose: () => void;
+  addTodo: (todo: {
+    title: string;
+    description: string;
+    completed: boolean;
+    date: Date;
+  }) => void;
+  selectedDate: Date;
+}
 
 export default function AddTaskButton({
   isOpen,
   onClose,
   addTodo,
   selectedDate,
-}) {
-  const [newTitle, setNewTitle] = useState("");
-  const [newDescription, setNewDescription] = useState("");
+}: AddTaskButtonProps) {
+  const [newTitle, setNewTitle] = useState<string>("");
+  const [newDescription, setNewDescription] = useState<string>("");
 
-  const handleAddTodo = (e) => {
+  const handleAddTodo = (e: FormEvent) => {
     e.preventDefault();
     if (newTitle.trim()) {
       addTodo({

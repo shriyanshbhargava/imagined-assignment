@@ -1,6 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
+import type { Config } from "tailwindcss";
+
+export default {
+  darkMode: ["class"], // Enable dark mode toggle using the `class` strategy
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,24 +9,35 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        playfair: ['"Playfair Display"', "serif"],
+        poppins: ['"Poppins"', "sans-serif"],
+      },
       keyframes: {
         fill: {
-          "0%": { backgroundColor: "transparent", borderColor: "black" },
-          "100%": { backgroundColor: "black", borderColor: "black" },
+          "0%": {
+            backgroundColor: "transparent",
+            borderColor: "black",
+          },
+          "100%": {
+            backgroundColor: "black",
+            borderColor: "black",
+          },
         },
         unfill: {
-          "0%": { backgroundColor: "black", borderColor: "black" },
-          "100%": { backgroundColor: "transparent", borderColor: "black" },
+          "0%": {
+            backgroundColor: "black",
+            borderColor: "black",
+          },
+          "100%": {
+            backgroundColor: "transparent",
+            borderColor: "black",
+          },
         },
       },
       animation: {
         fill: "fill 0.3s ease-in-out",
         unfill: "unfill 0.3s ease-in-out",
-      },
-
-      fontFamily: {
-        playfair: ['"Playfair Display"', "serif"],
-        poppins: ['"Poppins"', "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
@@ -62,11 +74,11 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         chart: {
-          1: "hsl(var(--chart-1))",
-          2: "hsl(var(--chart-2))",
-          3: "hsl(var(--chart-3))",
-          4: "hsl(var(--chart-4))",
-          5: "hsl(var(--chart-5))",
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
         },
       },
       borderRadius: {
@@ -76,5 +88,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-};
+  plugins: [require("tailwindcss-animate")], // Added plugin for animations
+} satisfies Config;

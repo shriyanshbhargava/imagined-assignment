@@ -1,8 +1,24 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-import { v4 as uuidv4 } from 'uuid';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { v4 as uuidv4 } from "uuid";
 
-export const useTodoStore = create(
+interface Todo {
+  id: string;
+  title: string;
+  description: string;
+  completed: boolean;
+  date?: Date; 
+}
+
+interface TodoStore {
+  todos: Todo[];
+  addTodo: (todo: Omit<Todo, "id">) => void;
+  toggleTodo: (id: string) => void;
+  editTodo: (id: string, updatedTodo: Partial<Omit<Todo, "id">>) => void;
+  deleteTodo: (id: string) => void;
+}
+
+export const useTodoStore = create<TodoStore>()(
   persist(
     (set) => ({
       todos: [],
@@ -28,8 +44,7 @@ export const useTodoStore = create(
         })),
     }),
     {
-      name: 'todo-storage',
+      name: "todo-storage", 
     }
   )
-)
-
+);

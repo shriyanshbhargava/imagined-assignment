@@ -12,6 +12,16 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
+interface TodoItemProps {
+  id: string | number; // Adjust type based on your ID system
+  title: string;
+  description: string;
+  completed: boolean;
+  onToggle: () => void;
+  onEdit: (title: string, description: string) => void;
+  onDelete: () => void;
+}
+
 export function TodoItem({
   id,
   title,
@@ -20,9 +30,10 @@ export function TodoItem({
   onToggle,
   onEdit,
   onDelete,
-}) {
-  const [editedTitle, setEditedTitle] = useState(title);
-  const [editedDescription, setEditedDescription] = useState(description);
+}: TodoItemProps) {
+  const [editedTitle, setEditedTitle] = useState<string>(title);
+  const [editedDescription, setEditedDescription] =
+    useState<string>(description);
 
   const handleSave = () => {
     onEdit(editedTitle, editedDescription);
@@ -44,22 +55,22 @@ export function TodoItem({
 
       <div className="flex-1">
         <h3
-          className={` font-extrabold text-lg  ${
-            completed && "line-through text-gray-500"
+          className={`font-extrabold text-lg ${
+            completed ? "line-through text-gray-500" : ""
           }`}
         >
           {title}
         </h3>
         <p
-          className={`text-sm text-black font- ${
-            completed && "line-through text-gray-400"
+          className={`text-sm ${
+            completed ? "line-through text-gray-400" : "text-black"
           }`}
         >
           {description}
         </p>
       </div>
 
-      <div className="flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity p-2 ">
+      <div className="flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity p-2">
         <Dialog>
           <DialogTrigger asChild>
             <button className="text-gray-700">
