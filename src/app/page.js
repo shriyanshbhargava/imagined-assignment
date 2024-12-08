@@ -25,12 +25,12 @@ export default function TodoPage() {
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold flex items-center font-poppins">
+            <h2 className="text-xl font-bold flex items-center font-inter">
               <CalendarIcon className="w-5 h-5 mr-2" />
               {format(selectedDate, "yyyy-MM-dd") ===
               format(new Date(), "yyyy-MM-dd")
                 ? "Today"
-                : format(selectedDate, "MMMM d, yyyy")}
+                : format(selectedDate, "EEEE")}
             </h2>
           </div>
 
@@ -49,10 +49,10 @@ export default function TodoPage() {
           />
         </div>
       </div>
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 ">
+      <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 ">
         <button
           onClick={() => setIsAddingTodo(true)}
-          className="p-4 bg-white text-black rounded-full outline-none ring-1 ring-gray-200 shadow-md "
+          className="p-4 bg-white text-black rounded-full outline-none ring-1 ring-gray-200 hover:shadow-lg"
         >
           <Plus className="w-6 h-6" />
         </button>

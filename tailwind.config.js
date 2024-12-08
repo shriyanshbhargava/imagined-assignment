@@ -8,6 +8,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        fill: {
+          "0%": { backgroundColor: "transparent", borderColor: "black" },
+          "100%": { backgroundColor: "black", borderColor: "black" },
+        },
+        unfill: {
+          "0%": { backgroundColor: "black", borderColor: "black" },
+          "100%": { backgroundColor: "transparent", borderColor: "black" },
+        },
+      },
+      animation: {
+        fill: "fill 0.3s ease-in-out",
+        unfill: "unfill 0.3s ease-in-out",
+      },
+
       fontFamily: {
         playfair: ['"Playfair Display"', "serif"],
         poppins: ['"Poppins"', "sans-serif"],

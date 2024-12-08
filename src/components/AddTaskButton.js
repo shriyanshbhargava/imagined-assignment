@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export default function AddTaskButton({
   isOpen,
@@ -48,6 +44,7 @@ export default function AddTaskButton({
               onChange={(e) => setNewTitle(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 "
               placeholder="Enter task title"
+              required
             />
           </div>
           <div>
@@ -75,7 +72,6 @@ export default function AddTaskButton({
             </button>
           </div>
         </form>
-      
       </DialogContent>
     </Dialog>
   );
