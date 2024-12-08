@@ -7,15 +7,18 @@ interface Todo {
   title: string;
   description: string;
   completed: boolean;
-  date?: Date; 
+  date?: Date;
 }
 
 interface TodoStore {
   todos: Todo[];
   addTodo: (todo: Omit<Todo, "id">) => void;
-  toggleTodo: (id: string) => void;
-  editTodo: (id: string, updatedTodo: Partial<Omit<Todo, "id">>) => void;
-  deleteTodo: (id: string) => void;
+  toggleTodo: (id: string | number) => void;
+  editTodo: (
+    id: string | number,
+    updatedTodo: Partial<Omit<Todo, "id">>
+  ) => void;
+  deleteTodo: (id: string | number) => void;
 }
 
 export const useTodoStore = create<TodoStore>()(
@@ -44,7 +47,7 @@ export const useTodoStore = create<TodoStore>()(
         })),
     }),
     {
-      name: "todo-storage", 
+      name: "todo-storage",
     }
   )
 );

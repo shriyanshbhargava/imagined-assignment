@@ -23,7 +23,6 @@ interface TodoItemProps {
 }
 
 export function TodoItem({
-  id,
   title,
   description,
   completed,

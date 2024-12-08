@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { format, addDays, startOfWeek, isBefore, isToday } from "date-fns";
+import { format, addDays, startOfWeek, isBefore } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -70,20 +70,20 @@ export function Calendar({ selectedDate, onDateSelect }: CalendarProps) {
           animate="center"
           exit="exit"
           transition={{ type: "tween", duration: 0.2 }}
-          className="grid grid-cols-7 gap-2"
         >
-          {weekDays.map((date) => {
-            const dayNumber = format(date, "d");
-            const isPast = isBefore(date, new Date());
-            const isTodayDate = isToday(date);
-            const isSelected =
-              format(date, "yyyy-MM-dd") === format(selectedDate, "yyyy-MM-dd");
+          <div className="grid grid-cols-7 gap-2">
+            {weekDays.map((date) => {
+              const dayNumber = format(date, "d");
+              const isPast = isBefore(date, new Date());
+              const isSelected =
+                format(date, "yyyy-MM-dd") ===
+                format(selectedDate, "yyyy-MM-dd");
 
-            return (
-              <button
-                key={date.toISOString()}
-                onClick={() => onDateSelect(date)}
-                className={`aspect-square rounded-md flex flex-col items-center justify-center
+              return (
+                <button
+                  key={date.toISOString()}
+                  onClick={() => onDateSelect(date)}
+                  className={`aspect-square rounded-md flex flex-col items-center justify-center
                 transition-transform transform duration-300 ${
                   isSelected
                     ? "bg-black text-white py-2 hover:bg-black scale-105"
@@ -91,18 +91,19 @@ export function Calendar({ selectedDate, onDateSelect }: CalendarProps) {
                     ? "text-black py-2 hover:bg-gray-200 scale-100"
                     : "text-gray-500 py-2 hover:bg-gray-200 scale-100"
                 } focus:outline-none`}
-              >
-                <span
-                  className={`text-xs font-semibold transition-colors ${
-                    isSelected ? "text-white" : "text-gray-500"
-                  }`}
                 >
-                  {format(date, "EEEE")[0]}
-                </span>
-                <span className="text-lg font-semibold">{dayNumber}</span>
-              </button>
-            );
-          })}
+                  <span
+                    className={`text-xs font-semibold transition-colors ${
+                      isSelected ? "text-white" : "text-gray-500"
+                    }`}
+                  >
+                    {format(date, "EEEE")[0]}
+                  </span>
+                  <span className="text-lg font-semibold">{dayNumber}</span>
+                </button>
+              );
+            })}
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>

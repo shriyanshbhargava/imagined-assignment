@@ -18,7 +18,9 @@ export default function TodoPage() {
 
   // Filter today's todos
   const todaysTodos = todos.filter(
-    (todo) => todo.date === format(selectedDate, "yyyy-MM-dd")
+    (todo) =>
+      todo.date &&
+      format(todo.date, "yyyy-MM-dd") === format(selectedDate, "yyyy-MM-dd")
   );
 
   return (
@@ -43,7 +45,7 @@ export default function TodoPage() {
             isOpen={isAddingTodo}
             onClose={() => setIsAddingTodo(false)}
             addTodo={addTodo}
-            selectedDate={format(selectedDate, "yyyy-MM-dd")}
+            selectedDate={new Date(format(selectedDate, "yyyy-MM-dd"))}
           />
 
           {/* Task List showing today's todos */}
@@ -55,7 +57,7 @@ export default function TodoPage() {
           />
         </div>
       </div>
-      
+
       {/* Bottom Button for Adding Todos */}
       <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
         <button
